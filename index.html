@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#d9ead3">
+  <title>Sylvia Buttercup | A Little Field Guide</title>
+  <style>
+    :root { --sage:#d9ead3; --paper:#f8f9f1; --deep:#244b4e; --teal:#2a7377; --muted:#587477; --line:#b7d2c4; --gold:#b68b36; --mama:#9f5156; }
+    * { box-sizing:border-box; }
+    body { margin:0; color:var(--deep); font:17px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif; background-color:#eaf4f9; background-image:url("assets/watercolor_background.png"); background-repeat:no-repeat; background-position:center center; background-size:100% 100%; background-attachment:fixed; min-height:100vh; }
+    .page { width:min(100%,940px); margin:auto; padding:clamp(18px,4vw,48px) 18px 42px; }
+    header { text-align:center; padding:18px 0 24px; }
+    .eyebrow { text-transform:uppercase; letter-spacing:.19em; color:var(--teal); font-weight:750; font-size:.73rem; }
+    h1 { font-family:Georgia,serif; font-size:clamp(2rem,5vw,3.6rem); line-height:1.08; margin:12px 0 10px; font-weight:600; }
+    .subtitle { max-width:580px; margin:0 auto; color:#536d64; font-size:1rem; }
+    .flower { display:inline-block; font-size:2rem; filter:saturate(.8); margin-bottom:6px; }
+    .controls { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:14px 0 18px; }
+    .control { display:block; border-radius:18px; background:rgba(255,255,255,.65); border:1px solid var(--line); padding:15px 16px 17px; box-shadow:0 8px 25px #345b5110; }
+    label { display:block; font-weight:750; color:var(--deep); margin:0 0 8px; font-size:.9rem; }
+    select { width:100%; appearance:none; -webkit-appearance:none; color:var(--deep); font:inherit; font-size:1rem; font-weight:650; background-color:#fcfdf8; border:2px solid #99c0b7; border-radius:10px; padding:12px 42px 12px 13px; min-height:49px; background-image:url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="18" height="12" viewBox="0 0 18 12"%3E%3Cpath d="m2 2 7 7 7-7" fill="none" stroke="%232a7377" stroke-width="2.5" stroke-linecap="round"/%3E%3C/svg%3E'); background-repeat:no-repeat; background-position:right 15px center; }
+    select:focus-visible,button:focus-visible,summary:focus-visible { outline:3px solid var(--gold); outline-offset:3px; }
+    .card { position:relative; overflow:hidden; border-radius:24px; background:var(--paper); padding:clamp(23px,5vw,48px); border:1px solid #b6d4c2; box-shadow:0 15px 45px #315b4725; min-height:350px; }
+    .card::before { content:""; position:absolute; width:150px; height:150px; background:radial-gradient(circle,#f4e9be 0,#f4e9be22 62%,transparent 70%); top:-72px; right:-40px; border-radius:50%; pointer-events:none; }
+    .card.mama { border-color:#bc9f9b; background:linear-gradient(145deg,#fcf9f1,#f8eeea); }
+    .tag { display:inline-block; text-transform:uppercase; letter-spacing:.12em; font-size:.69rem; font-weight:800; color:var(--teal); background:#e0f0e4; border-radius:50px; padding:5px 12px; }
+    .mama .tag { background:#f0dfdd; color:#8b494d; }
+    h2 { font:600 clamp(1.75rem,4vw,2.7rem)/1.2 Georgia,serif; margin:18px 0 8px; }
+    .instruction { margin:0 0 28px; color:var(--muted); font-size:.9rem; }
+    .narration { font:italic clamp(1.18rem,2.7vw,1.5rem)/1.65 Georgia,serif; max-width:680px; margin:0; white-space:pre-line; }
+    .dialogue { display:inline-block; font:600 1.15rem/1.5 Georgia,serif; margin:23px 0 4px; padding:11px 17px; border-left:4px solid #d0aa4c; background:#f2efdf; border-radius:0 10px 10px 0; }
+    .mama .dialogue { border-color:var(--mama); background:#f4e6e4; }
+    .navigation { display:flex; align-items:center; justify-content:space-between; gap:10px; margin:16px 0 0; }
+    button { cursor:pointer; font:inherit; font-weight:700; min-height:47px; border:1px solid #a7c9be; border-radius:11px; background:#eef8f2; color:var(--deep); padding:9px 16px; transition:background .15s ease,transform .15s ease; }
+    button:hover { background:#d9ebe0; }
+    button:active { transform:translateY(1px); }
+    .count { color:var(--muted); font-weight:650; font-size:.89rem; white-space:nowrap; }
+    .extras { margin:18px 0 0; border:1px solid var(--line); background:#eef6ec99; border-radius:13px; padding:0 17px; }
+    summary { cursor:pointer; padding:13px 0; color:var(--teal); font-weight:750; }
+    .extra-text { padding:0 0 14px; margin:0; font-size:.95rem; color:#426360; }
+    .footer { text-align:center; color:#59716b; font-size:.86rem; margin:22px 0 4px; }
+    .footer span { white-space:nowrap; }
+    .portrait-shelf { display:flex; align-items:center; justify-content:center; gap:clamp(18px,5vw,52px); margin:20px auto 7px; }
+    .portrait { width:145px; margin:0; text-align:center; }
+    .portrait img { display:block; width:132px; max-width:100%; aspect-ratio:1; object-fit:contain; margin:0 auto; filter:drop-shadow(0 4px 8px #35615d44); }
+    .portrait img[hidden] { display:none; }
+    .portrait figcaption { font-size:.73rem; font-weight:800; letter-spacing:.1em; text-transform:uppercase; color:var(--teal); margin-top:5px; }
+    .portrait-switch { display:flex; justify-content:center; margin:4px auto 0; }
+    #buttonMoodToggle { min-height:38px; padding:6px 16px; font-size:.82rem; font-weight:750; background:#eff9f5; border-color:#94bcb5; }
+    #buttonMoodToggle:hover { background:#d9eee7; }
+    .copybar { display:flex; justify-content:flex-end; margin-top:19px; }
+    #copy { background:#c8e5df; border-color:#87b3ac; color:var(--deep); }
+    #copy:hover { background:#b2d8d0; }
+    #status { min-height:1.4em; font-size:.82rem; color:var(--muted); text-align:right; }
+    @media(max-width:590px) { .controls{grid-template-columns:1fr;} .page{padding-top:15px;} header{padding:10px 0 13px;} .card{min-height:330px;} .navigation{gap:5px;} button{padding:9px 12px;} .portrait{width:112px;} .portrait img{width:104px;} .portrait-shelf{margin-top:14px;gap:22px;} }
+    @media(prefers-reduced-motion:reduce) { * {transition:none!important;} }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="flower" aria-hidden="true">🌼</div>
+      <div class="eyebrow">A little field guide for the Halloween one-shot</div>
+      <h1>Sylvia Buttercup</h1>
+      <p class="subtitle">A gentle sloth, a fiercely protective heart, and a little companion named Button. One magical moment at a time.</p>
+      <div class="portrait-shelf" aria-label="Sylvia and Button character tokens">
+        <figure class="portrait">
+          <img id="sylviaToken" src="assets/Sylvia_Buttercup_Token.png" width="132" height="132" alt="Sylvia Buttercup, a kind sloth cleric in a blue embroidered robe holding a glowing staff" decoding="async">
+          <figcaption>Sylvia</figcaption>
+        </figure>
+        <figure class="portrait">
+          <img id="buttonHappyToken" src="assets/Button_Happy_Token.png" width="132" height="132" alt="Happy Button, a smiling little shrub covered with golden-yellow flowers" decoding="async">
+          <img id="buttonUpsetToken" src="assets/Button_Mamas_Upset_Token.png" width="132" height="132" alt="Protective Button, the same shrub with red flowers and fierce little eyebrows" decoding="async" hidden>
+          <figcaption id="buttonMoodLabel">Button · happy</figcaption>
+        </figure>
+      </div>
+      <div class="portrait-switch"><button id="buttonMoodToggle" type="button" aria-pressed="false">🌺 Show protective Button</button></div>
+    </header>
+
+    <main>
+      <div class="controls">
+        <div class="control">
+          <label for="category">1. What kind of moment?</label>
+          <select id="category"></select>
+        </div>
+        <div class="control">
+          <label for="choice">2. What is Sylvia using?</label>
+          <select id="choice"></select>
+        </div>
+      </div>
+
+      <section class="card" id="card" aria-live="polite" aria-atomic="true">
+        <span class="tag" id="tag">A gentle moment</span>
+        <h2 id="name">Healing Word</h2>
+        <p class="instruction">You can read this aloud exactly as written—or make it your own.</p>
+        <p class="narration" id="description"></p>
+        <p class="dialogue" id="dialogue" hidden></p>
+        <div class="copybar"><button type="button" id="copy">Copy description</button></div>
+        <div id="status" role="status" aria-live="polite"></div>
+      </section>
+
+      <div class="navigation" aria-label="Browse moments">
+        <button type="button" id="previous" aria-label="Previous moment">← Previous</button>
+        <span class="count" id="counter"></span>
+        <button type="button" id="next" aria-label="Next moment">Next →</button>
+      </div>
+
+      <details class="extras" id="rules">
+        <summary>Small table reminder (optional)</summary>
+        <p class="extra-text" id="note"></p>
+      </details>
+    </main>
+
+    <p class="footer"><span>🌼 Yellow when she's happy.</span> <span>🌺 Red when Mama's upset.</span><br>Descriptions add atmosphere, not new game mechanics.</p>
+  </div>
+
+  <script>
+  'use strict';
+  const groups = [
+    {label:'Healing & protection',items:[
+      {name:'Healing Word',description:'Sylvia whispers a few gentle words. A single golden buttercup blooms above the wounded person’s heart, dissolving into warm light.',dialogue:'There we are, dear.'},
+      {name:'Mass Healing Word',description:'She lifts her staff. Tiny floating flowers scatter toward her injured companions, each bursting into golden light as it reaches them.'},
+      {name:'Aid',description:'Delicate roots of golden light briefly connect her companions, each one pulsing with renewed strength.'},
+      {name:'Death Ward',description:'Sylvia rests a hand on someone’s shoulder. A small crimson buttercup appears over their heart, its petals folding protectively around a spark of light.',note:'This is the protective sign. If Death Ward prevents a fatal moment later, describe that small flower flashing brightly before its petals scatter.'},
+      {name:'Sanctuary',description:'Translucent petals unfold around her chosen companion, forming a soft golden shimmer that encourages danger to turn away.'},
+      {name:'Protection from Evil and Good',description:'A ring of pale golden flowers briefly surrounds her chosen companion. Their petals lift into a shimmering protective aura.'},
+      {name:'Prayer of Healing',description:'As Sylvia prays, soft sunlight seems to filter through an invisible canopy overhead. The air grows warm, and little flowers open around everyone resting nearby.',note:'This is a longer, quiet healing moment rather than a hurried combat incantation.'},
+      {name:'Revivify',description:'Sylvia kneels beside her fallen companion. A tiny flower grows from her staff and comes to rest against their chest. Its petals slowly open as life returns.',dialogue:'Not... yet... my dear.',note:'Check the material component before the session: Revivify normally consumes diamonds worth 300 gp.'}
+    ]},
+    {label:'When Mama protects',items:[
+      {name:'Guiding Bolt',description:'Sylvia gently points her staff. A brilliant shaft of golden sunlight bursts from its tip, trailing drifting petals in its wake.'},
+      {name:'Spirit Guardians',description:'Golden petals rise around Sylvia and begin to circle. Their movement gathers into a glowing ring of protective spirits. When someone threatens her friends, the flowers turn red.',note:'Spirit Guardians requires concentration. This is visual description, not a change to the effect’s actual area.'},
+      {name:'Banishment',description:'Sylvia raises one finger toward her enemy. Red buttercups bloom beneath its feet, their petals folding inward as the creature vanishes.',dialogue:'I... think... you... should... go.',note:'Use the disappearance description when the target actually fails its save. Banishment requires concentration.'},
+      {name:'Bane',description:'Sylvia releases a long, disappointed sigh. Dark red pollen settles over her enemies, making every movement seem a little heavier.',dialogue:'Oh... dear.'},
+      {name:'Counterspell',description:'Her staff flashes. Tangled threads of green light reach toward the forming magic, trying to unravel it before it can take hold.',note:'Describe the magic unraveling completely only after the counter succeeds.'}
+    ]},
+    {label:'Peace & discovery',items:[
+      {name:'Calm Emotions',description:'The air fills with the fragrance of fresh flowers after rain. A quiet warmth settles over the scene, inviting everyone to breathe a little more slowly.'},
+      {name:'Pacify Person',description:'Sylvia lowers her staff. A single buttercup opens between her and the other person, and the golden light from its center quietly reaches toward them.',dialogue:'Let’s... take... a breath.'},
+      {name:'Detect Thoughts',description:'Sylvia closes her eyes. Tiny golden petals drift around her head, moving in rhythm with the thoughts she senses.'},
+      {name:'Comprehend Languages',description:'Tiny glowing letters appear along the petals of a buttercup, rearranging themselves until their meaning becomes clear to Sylvia.'},
+      {name:'Tongues',description:'Golden light briefly brushes her lips. Her words remain just as slow and measured, but their meaning travels effortlessly across languages.'},
+      {name:'Divination',description:'Sylvia plants her staff in the earth. Small flowers open in intricate patterns, slowly arranging themselves into glimpses of an answer.'},
+      {name:'Freedom of Movement',description:'Luminous vines gently unwind around the chosen creature, then melt away into a warm breeze as movement becomes effortless.'}
+    ]},
+    {label:'Armor, staff & Button',items:[
+      {name:'Armor of Fungal Spores',mama:true,description:'Sylvia goes very still. The buttercups at her feet turn red. Along the seams of her half plate, tiny mushrooms tremble, then open to reveal deep crimson gills.\n\nShe draws in a slow breath. On her exhale, a thick cloud of glowing rust-colored spores rolls outward in every direction. Her staff pulses red—and for once, her voice is no longer slow.',dialogue:'I said. Leave. Them. Alone.',note:'Armor feature: bonus action; poisonous spore cloud in a 10-foot radius; DC 15 Constitution save or poisoned until the end of your next turn; once per dawn. The burst can affect nearby allies and Button, too.'},
+      {name:'Staff of Healing',description:'Sylvia rests her staff gently against a wound. A soft golden glow travels through the wood, branching like the veins of a leaf. The glow seeps into the injury, leaving the faint scent of buttercups.',dialogue:'You’re... all right... now.',note:'For actual healing, use whichever Staff of Healing option you activate. This describes the effect, not an additional ability.'},
+      {name:'Mama-Bear Moment',mama:true,description:'The golden light in Sylvia’s staff deepens to crimson. The buttercups near her feet turn red, one after another. Her eyes begin to glow.\n\nShe becomes perfectly still. Then she looks directly at whoever threatened her friends.',dialogue:'You will not hurt them.',note:'This is visual and roleplay flavor, not a Barbarian Rage feature unless your DM adds one.'},
+      {name:'Button — Her Story',description:'BUTTON BUTTERCUP\nAwakened Shrub · Shrubby Cinquefoil (Dasiphora fruticosa) · Companion to Sylvia Buttercup\n\nButton is a small, living shrubby cinquefoil with a rounded, bushy body, delicate blue-green leaves, and cheerful little yellow flowers resembling buttercups. Her woody branches sway as she moves, and her roots have developed into tiny, surprisingly determined legs.\n\nHOW BUTTON CAME TO LIFE\nButton began as an ordinary shrub planted by Sylvia in an enchanted clay vessel known as a Pot of Awakening.\n\nSylvia patiently tended her little plant for thirty days, watering her, making sure she received plenty of sunlight, and perhaps talking to her in that wonderfully slow, gentle voice.\n\nAt the end of the thirtieth day, something extraordinary happened. The little shrub stirred. Her roots began to twist and stretch, cracking the clay pot that had been her home. With one final wiggle, the pot broke apart, and Button took her very first steps.\n\nSylvia had grown herself a friend.\n\nPERSONALITY AND APPEARANCE\nButton is cheerful, affectionate, and fiercely loyal to Sylvia. When everything is peaceful, Button’s flowers are a brilliant buttercup yellow. She happily toddles along beside Sylvia, her little blossoms bobbing with every step.\n\nBut Button shares Sylvia’s protective instincts. When Sylvia becomes upset or someone threatens those she cares about, Button’s yellow flowers gradually turn crimson. The little shrub plants her root-feet firmly on the ground, spreads her branches, and puffs out every leaf in an earnest attempt to look intimidating.\n\nShe may be small, but Button takes protecting Mama very seriously. And while Sylvia’s staff and eyes begin to glow red, Button’s flowers announce to everyone nearby that Mama Buttercup is no longer amused.',note:'Real shrub: Dasiphora fruticosa, formerly Potentilla fruticosa, is a hardy member of the rose family. Its small yellow, five-petaled flowers resemble buttercups. Pot of Awakening: Common magic item; an ordinary shrub becomes an Awakened Shrub after 30 days, destroying the pot. The already-completed awakening and emotion-linked flower colors are details to confirm with the DM.'},
+      {name:'Button — Happy',description:'Button toddles at Sylvia’s side on small, determined roots. Tiny yellow flowers bob above the shrub’s leaves, and every step looks like a miniature, very enthusiastic march.'},
+      {name:'Button — Upset',mama:true,description:'Button’s little yellow flowers turn crimson. The tiny shrub plants both feet, puffs out every leaf, and attempts to look absolutely terrifying. It is very, very serious about helping Mama.',note:'Button is an awakened shrubby cinquefoil concept. Confirm its already-awakened status and any companion mechanics with the DM.'},
+      {name:'The Buttercup Trail',description:'As Sylvia walks, little buttercups quietly bloom where she has passed. Their petals are yellow when she is at peace—and gradually turn red when her protective anger begins to rise.',note:'This is a proposed cosmetic flourish, subject to DM approval.'},
+      {name:'Channel Divinity — Sear Undead',mama:true,description:'Sylvia plants her staff. A ring of red and gold blossoms opens beneath her feet, sending up a sudden brilliance like sunrise through an autumn forest.',note:'Use only the actual Channel Divinity effect on your character sheet. This is narration, not extra damage.'}
+    ]}
+  ];
+
+  const $ = id => document.getElementById(id);
+  const cat = $('category'), choice = $('choice');
+  groups.forEach((g,i) => cat.add(new Option(g.label,String(i))));
+  function fillChoices(selected=0) {
+    choice.replaceChildren();
+    groups[Number(cat.value)].items.forEach((item,i) => choice.add(new Option(item.name,String(i))));
+    choice.value = String(selected);
+    render();
+  }
+  function render() {
+    const g = groups[Number(cat.value)];
+    const item = g.items[Number(choice.value)];
+    $('tag').textContent = g.label;
+    $('name').textContent = item.name;
+    $('description').textContent = item.description;
+    $('dialogue').hidden = !item.dialogue;
+    $('dialogue').textContent = item.dialogue ? '“' + item.dialogue + '”' : '';
+    $('card').classList.toggle('mama',Boolean(item.mama));
+    $('counter').textContent = (Number(choice.value)+1) + ' of ' + g.items.length;
+    $('note').textContent = item.note || 'The wording here is purely descriptive. Use the ability or spell rules shown on your D&D Beyond character sheet.';
+    if (item.name === 'Button — Upset') setButtonMood(true);
+    if (item.name === 'Button — Happy') setButtonMood(false);
+    $('rules').open = false;
+    $('status').textContent = '';
+  }
+  cat.addEventListener('change',() => fillChoices());
+  choice.addEventListener('change',render);
+  function setButtonMood(protective) {
+    $('buttonHappyToken').hidden = protective;
+    $('buttonUpsetToken').hidden = !protective;
+    $('buttonMoodLabel').textContent = protective ? 'Button · protective' : 'Button · happy';
+    $('buttonMoodToggle').textContent = protective ? '🌼 Show happy Button' : '🌺 Show protective Button';
+    $('buttonMoodToggle').setAttribute('aria-pressed',String(protective));
+  }
+  $('buttonMoodToggle').addEventListener('click',() => setButtonMood($('buttonUpsetToken').hidden));
+  function move(step) {
+    const length = groups[Number(cat.value)].items.length;
+    choice.value = String((Number(choice.value)+step+length)%length);
+    render();
+  }
+  $('previous').addEventListener('click',() => move(-1));
+  $('next').addEventListener('click',() => move(1));
+  $('copy').addEventListener('click',async () => {
+    const item = groups[Number(cat.value)].items[Number(choice.value)];
+    const content = item.name + '\n' + item.description + (item.dialogue?'\n“'+item.dialogue+'”':'');
+    try {
+      if(navigator.clipboard && navigator.clipboard.writeText) await navigator.clipboard.writeText(content);
+      else {
+        const area=document.createElement('textarea'); area.value=content; area.style.position='fixed'; area.style.opacity='0';
+        document.body.appendChild(area);area.select();
+        if(!document.execCommand('copy')) throw new Error('Copy not supported');
+        area.remove();
+      }
+      $('status').textContent = 'Copied!';
+    } catch {
+      $('status').textContent = 'Copy unavailable here; select the description above instead.';
+    }
+  });
+  fillChoices();
+  </script>
+</body>
+</html>
